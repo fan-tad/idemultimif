@@ -1,0 +1,39 @@
+.chat {
+    color: white;
+    position: fixed;
+    z-index: 1000;
+    right: 0px;
+    bottom: 0px;
+    background-color: rgb(33, 150, 243);
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    padding: 0px 10px 5px 10px;
+    color: white;
+}
+
+.chat .message-list {
+    height: 50vh;
+    overflow: auto;
+    list-style-type: none;
+    padding: 0px;
+}
+
+.chat .close-chat {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.chat#closed {
+    top: 97vh;
+}
+
+.chat .title {
+    font-weight: bold;
+}
+
+.chat .message {
+    height: 18px;
+}

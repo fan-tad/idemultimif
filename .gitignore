@@ -1,0 +1,8 @@
+target
+out
+.DS_Store
+.idea
+MultiMIF.iml
+.iml
+.orig
+*.orig

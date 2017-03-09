@@ -1,0 +1,863 @@
+======================== BOITE NOIRE ============================
+================================================================
+
+CU1 :  Authentification 
+Portée : IDE WEB
+Niveau : Utilisateur
+Déclencheur : L'utilisateur veut acceder à l'application
+Acteur principal : L'utilisateur
+Garanties minimales : Retour d'informations
+Garanties en cas de succès : Authentification réussie
+
+Scénario:
+1. Le système affiche l’écran d’ouverture de session.
+2. L’utilisateur saisit un nom d’utilisateur et un mot de passe.
+3. Le système vérifie les informations.
+4. Le système définit les autorisations d’accès.
+5. Le système affiche l’écran principal.
+
+Extensions:
+3.1 Le système refuse l'authentification.
+3.1.1 Retour à l'étape 1.
+
+==================================================================
+
+CU2: Création de compte
+Portée: IDE WEB
+Niveau: Utilisateur
+Déclencheur : L'utilisateur veut accéder à l'application pour la première fois
+Acteur principal : L'utilisateur
+Garanties minimales : Retour d'informations
+Garanties en cas de succès : Enregistrement réussi
+
+Scénario:
+1. Le système affiche l'écran d'inscription.
+2. L'utilisateur remplit le formulaire.
+3. Le système vérifie les informations.
+4. L'utilisateur s'authentifie CU1.
+
+Extensions:
+3.1 Le système refuse l'enregistrement (nom déjà pris, données invalides...).
+3.1.1. Retour à l'étape 1.
+
+==================================================================
+
+CU3: Création d'un fichier
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur veut créer un fichier
+Acteur principal : L'utilisateur
+Pré-conditions: L'utilisateur est connecté à l'application et est acteur dans un projet
+Garanties minimales : Retour d'informations en cas d'erreur
+Garanties en cas de succès : Le fichier est correctement créé
+
+Scénario nominal:
+1. L'utilisateur utilise le bouton [CREER UN FICHIER].
+2. L'utilisateur choisie le nom du fichier.
+3. Le système crée le fichier.
+4. L'utilisateur peut éditer le code (CU3).
+
+Extensions:
+2.1. Le nom de fichier est déjà utilisé.
+2.1.1. Le système demande à l'utilisateur de choisir un nouveau nom ou d'écraser l'ancien fichier.
+2.2.1. L'utilisateur choisit un nouveau nom et crée le fichier.
+2.2.2. Le système remplace l'ancien fichier par le nouveau.
+2.2.3. L'utilisateur décide de ne pas créer le fichier.
+
+==================================================================
+
+CU4 : Edition du code
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur veut éditer et lire son code
+Acteur principal : L'utilisateur
+Pré-conditions: L'utilisateur est connecté à l'application
+Garanties minimales : Rien n'est modifié sur le serveur mais le code est conservé en local tant que l'utilisateur ne quitte pas la page
+Garanties en cas de succès : Le code est édité et sauvegardé sur le serveur
+
+Scénario nominal:
+1. L'utilisateur choisit un fichier à modifier.
+2. L'utilisateur modifie le fichier.
+3. L'utilisateur sauvegarde ses modifications.
+
+Extensions:
+1.1 Le fichier auquel l'utilisateur tente d'accéder est déjà utilisé.
+1.1.1. Retour à la liste des fichiers.
+3.1. La sauvegarde n'a pas fonctionnée.
+3.1.1. Retour à l'étape 2.
+
+==================================================================
+
+CU5 : Importer un fichier
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur veut importer un fichier
+Acteur principal : L'utilisateur
+Pré-conditions: L'utilisateur est connecté à l'application
+Garanties minimales : Retour d'informations en cas d'erreur
+Garanties en cas de succès : L'utilisateur a importé son fichier.
+
+Scénario nominal:
+1. L'utilisateur sélectionne le fichier qu'il souhaite importer sur l'interface web.
+3. L'utilisateur précise l'emplacement où le fichier doit être sauvegardé dans le projet.
+4. Le fichier est importé.
+
+Extensions:
+4.1. Le fichier existe déjà, l'utilisateur décide de remplacer le fichier.
+4.1.1 Le fichier est remplacé.
+4.2. Le fichier existe déjà, l'utilisateur annule l'opération.
+4.2.1. L'import est annulé.
+
+==================================================================
+
+CU6 : Exporter un fichier
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur veut exporter un fichier
+Acteur principal : L'utilisateur
+Pré-conditions: L'utilisateur est connecté à l'application
+Garanties minimales :  Retour d'informations en cas d'erreur
+Garanties en cas de succès : L'utilisateur a exporté son fichier.
+
+Scénario nominal:
+1. L'utilisateur clique sur le bouton [EXPORTER].
+2. L'utilisateur sélectionne le fichier qu'il souhaite exporter sur sa machine.
+3. Le fichier est exporté.
+
+Extensions:
+3.1 Le fichier est vérouillé, il est quand même exporté et le système envoie un avertissement pour prévenir l'utilisateur.
+
+==================================================================
+
+CU7: Suppression d'un fichier
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur veut supprimer un fichier
+Acteur principal : L'utilisateur
+Pré-conditions: L'utilisateur est connecté à l'application, le fichier existe
+Garanties minimales : Retour d'informations en cas d'erreur
+Garanties en cas de succès : Le fichier est correctement supprimé
+
+Scénario nominal:
+1. L'utilisateur choisit le fichier à supprimer.
+2. Le système vérifie l'état du fichier (lock / unlock).
+3. L'utilisateur utilise le bouton [SUPPRIMER UN FICHIER].
+4. Le fichier est supprimé.
+
+Extensions:
+1.1. L'utilisateur n'a pas les droits d'écriture sur le fichier. Retour à l'étape 1.
+3.1. Fichier vérouillé: Le bouton supprimé n'est pas accessible.
+
+==================================================================
+
+CU8 : Créer un projet
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur veut créer un nouveau projet
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est connecté à l'application
+Garantie minimale : Retour d'information en cas d'erreur
+Garantie en cas de succès : Le nouveau projet est créé
+
+Scénario nominal:
+1. L'utilisateur choisit un type de projet.
+2. L'utilisateur choisit entre importer le projet ou le créer.
+3. L'utilisateur choisie les personnes qui ont accès au projet.
+4. Le nouveau projet est ouvert.
+
+Extensions:
+2.1 L'utilisateur upload son projet.
+
+==================================================================
+
+CU9 : Supprimer un projet
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur veut supprimer un projet existant
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est connecté à l'application, le projet existe
+Garantie minimale : Retour d'information en cas d'erreur
+Garantie en cas de succès : Le projet est supprimé
+
+Scénario nominal:
+1. L'utilisateur choisit le projet à supprimer.
+2. Le système vérifie qu'aucun fichier du projet n'est vérouillé.
+3. L'utilisateur utilise le bouton [SUPPRIMER LE PROJET].
+4. Le projet est supprimé.
+
+Extensions:
+1.1. L'utilisateur n'a pas les droits d'écriture sur le projet. Retour en 1.
+3.1. Un fichier est vérouillé, le bouton supprimer est inaccessible.
+
+==================================================================
+
+CU10 : Sauvegarde d'un fichier
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur souhaite sauvegarder son fichier
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est connecté à l'application, a créé et edité son code ou modifié un fichier déjà existant
+Garantie minimale : Retour d'information en cas d'erreur
+Garantie en cas de succès : Le fichier a été correctement sauvegardé
+
+Scénario nominal:
+1. L'utilisateur utilise le bouton [SAUVEGARDE].
+2. L'applicaiton informe l'utilisateur que la sauvegarde a réussi.
+
+
+==================================================================
+
+CU11: Renommer un fichier
+Portée: IDE WEB
+Niveau: Stratégique (boite noire)
+Déclencheur: L'utilisateur souhaite renomer un fichier
+Acteur principal: L'utilisateur
+Pré-condition: Le fichier est existant
+Garantie minimale: Retour d'information en cas d'erreur
+Garentie en cas de succès: Le fichier a été renommé
+
+Scénario nominal:
+1. L'utilisateur sélectionne le fichier qu'il souhaite renommer.
+2. Le système vérifie que le fichier n'est pas vérouillé.
+3. L'utilisateur écrit le nouveau nom du fichier.
+4. L'utilisateur utilise le bouton [RENOMMER].
+5. Le fichier est renommé.
+
+Extensions:
+1.1 L'utilisateur n'a pas les droits pour renommer un fichier.
+2.1 Le fichier est vérouillé: Le bouton renommer n'est pas accessible.
+
+==================================================================
+
+CU12: Déplacer un fichier
+Portée: IDE WEB
+Niveau: Stratégique (boite noire)
+Déclencheur: L'utilisateur souhaite déplacer un fichier
+Acteur principal: L'utilisateur
+Pré-condition: Le fichier est existant
+Garantie minimale: Retour d'information en cas d'erreur
+Garentie en cas de succès: Le fichier a été déplacé
+
+Scénario nominal:
+1. L'utilisateur sélectionne le fichier qu'il souhaite déplacer.
+2. Le système vérifie que le fichier n'est pas vérouillé.
+3. L'utilisateur choisit le répertoire.
+4. L'utilisateur utilise le bouton [DEPLACER].
+5. Le fichier est déplacé.
+
+Extensions:
+1.1 L'utilisateur n'a pas les droits pour déplacer un fichier.
+2.1 Le fichier est vérouillé: Le bouton déplacer n'est pas accessible.
+
+==================================================================
+
+CU13: Compiler
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur veut compiler son travail
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est authentifié, l'utilisateur a ouvert un projet, le projet n'est pas vide
+Garantie minimale : Retour en cas d'erreur
+Garantie en cas de succès : Le projet est compilé avec succès
+
+Scénario nominal:
+1. L'utiliseur sélectionne le bouton de compilation.
+2. Le système récupère les options de compilation.
+3. Le système co
+4. Le système affiche le résultat de la compilation.
+
+Extension:
+4.1 Le projet n'est pas compilé.
+4.1.1 Le système renvoit les erreurs de la compilation.
+
+==================================================================
+
+CU14: Consulter la TODO List
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur veut consulter la liste
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est authentifié, l'utilisateur a ouvert un projet
+Garantie minimale : Retour en cas d'erreur
+Garantie en cas de succès : Affichage de la liste
+
+Scénario nominal :
+1. L'utilisateur clique sur le bouton/lien d'accès à la TODO List.
+2. Le système affiche la liste.
+
+Extension:
+2.1 La liste est vide, l'utilisateur est averti.
+
+==================================================================
+
+CU15: Ajouter un utilisateur au projet
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur veut ajouter un utilisateur
+Acteur principal : L'Utilisateur est admin du projet
+Pré-condition : l'utilisateur est authentifié et admin du projet, l'utilisateur est dans un projet
+Garantie minimale : Retour en cas d'erreur
+Garantie en cas de succès : Le nouvel utilisateur est ajouté au projet
+
+Scénario nominal :
+1. L'utilisateur clique sur le bouton d'ajout d'un nouvel utilisateur.
+2. L'utilisateur recherche la personne à ajouter (par nom/prenom/mail).
+3. L'utilisateur choisit la personne et lui attribut un rôle.
+4 L'utilisateur valide son choix.
+
+==================================================================
+
+CU166: Retirer un utilisateur du projet
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur veut retirer un utilisateur
+Acteur principal : L'utilisateur est admin du projet
+Pré-condition : L'utilisateur est authentifié et admin du projet, l'utilisateur est dans le projet ainsi que l'utilisateur à retirer
+Garantie minimale : Retour en cas d'erreur
+Garantie en cas de succès : L'utilisateur est retiré
+
+Scénario nominal :
+1. L'utilisateur accède à la liste des membres du projet.
+2. L'utilisateur clique sur le bouton de retrait de l'utilisateur en question.
+3. L'utilisateur en question est retiré du projet.
+
+
+==================================================================
+
+CU177 : Ouvrir un ticket
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur souhaite ouvrir un ticket
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est connecté à l'application
+Garantie minimale : Un ticket a été ouvert 
+Garantie en cas de succès : Un ticket a été ouvert
+
+Scénario nominal:
+1. L'utilisateur se rend sur l'interface de gestion de ticket.
+2. L'utilisateur clique sur [NOUVEAU TICKET].
+3. L'utilisateur renseigne les informations lié à ce nouveau ticket.
+4. L'utilisateur définit la priorité, assigne un utilisateur à la résolution du ticket et valide.
+5. Un nouveau ticket a été ouvert.
+
+==================================================================
+
+CU188 : Création et exportation de la javadoc
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur souhaite créer une javadoc de son projet
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est connecté à l'application
+Garantie minimale : La javadoc est générée partiellement ou sans information.
+Garantie en cas de succès : La javadoc a été correctement générée.
+
+Scénario nominal:
+1. L'utilsateur commente son code : méthodes et variables (/**).
+2. L'utilisateur clique sur le bouton [GENERER LA JAVADOC].
+3. L'IDE WEB génère la javadoc et propose à l'utilsateur de l'enregister.
+4. L'utilisateur précise l'emplacement où le fichier doit être sauvegardé.
+5. La javadoc a été créée et exportée.
+
+Extensions:
+1.1. L'utilisateur ne commente pas son code.
+3.1. L'application n'a pas trouvée de commentaires. La javadoc n'est pas générée.
+
+==================================================================
+
+CU199 : Communiquer avec les utilisateurs du projet
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur souhaite communiquer avec les utilisateurs du même projet
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur doit avoir ouvert un projet
+Garantie minimale : L'utilisateur est seul sur le projet
+Garantie en cas de succès : La communication entre les utilisateurs a réussi
+
+Scénario nominal:
+1. L'utilisateur clique sur le bouton [CHAT].
+2. L'utilisateur saisit son texte dans le champ.
+3. L'utilisateur valide pour envoyer son message.
+4. Les utilisateurs communiquent.
+
+==================================================================
+
+CU2020 : Créer un post sur le forum
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur souhaite exposer un problème qu'il a eu lors du développement.
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est connecté à l'application, sur le projet où il souhaite poster
+Garantie minimale :  Retour d'erreur si le message ne s'envoie pas
+Garantie en cas de succès : L'utilisateur a posté un message sur le forum
+
+Scénario nominal:
+1. L'utilisateur clique sur le bouton [CREER UN POSTE].
+2. L'utilisateur remplit les champs nécessaires à la création du poste
+valider.
+
+Extensions:
+1.1 L'utilisateur voit que la solution à son problème est déjà présente sur le forum, dans ce cas pas d'étape 2.
+
+==================================================================
+
+CU21 : Consulter le wiki
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur souhaite accéder à la documentation de son projet
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est connecté à l'application, l'utilisateur est dans un projet
+Garantie minimale : Retour en cas d'erreur, page blanche si wiki vide
+Garantie en cas de succès : L'utilisateur accède à la page principale du wiki
+
+Scénario nominal:
+1. L'utilisateur clique sur le bouton [WIKI].
+2. L'utilisateur accède à la page wiki du projet.
+
+
+======================== BOITE BLANCHE ============================
+===================================================================
+
+CU1 :  Authentification 
+Portée : IDE WEB
+Niveau : Utilisateur
+Déclencheur : L'utilisateur veut accéder à l'application
+Acteur principal : L'utilisateur
+Garanties minimales : Retour d'informations
+Garanties en cas de succès : Authentification réussie
+
+Scénario:
+1. Le système affiche l’écran d’ouverture de session.
+2. L’utilisateur saisit un nom d’utilisateur et un mot de passe.
+3. Le système fait une requete à la BDD pour verifier les informations
+4. La DBB renvoie les information de connection
+5. Le système vérifie les informations.
+6. Le système définit les autorisations d’accès.
+7. Le système charge les information de l'utilisateur.
+8. Le système affiche l’écran principal.
+
+Extensions:
+3.1.1 Le système refuse l'authentification.
+3.1.2 Retour à l'étape 1.
+
+==================================================================
+
+CU2: Création de compte
+Portée: IDE WEB
+Niveau: Utilisateur
+Déclencheur : L'utilisateur veut accéder à l'application pour la première fois
+Acteur principal : L'utilisateur
+Garanties minimales : Retour d'informations
+Garanties en cas de succès : Enregistrement réussi
+
+Scénario:
+1. Le système affiche l'écran d'inscription.
+2. L'utilisateur remplit le formulaire.
+3. Le système fait une requete à la BDD pour verifier les informations.
+4. La DBB revoie les information de connection.
+5. Le système vérifie les informations.
+6. L'utilisateur s'authentifie (CU1).
+
+Extensions:
+3.1.1 Le système refuse l'enregistrement (nom déjà pris, données invalides...).
+3.1.2. Retour à l'étape 1.
+
+==================================================================
+
+CU3: Création d'un fichier
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur veut créer un fichier
+Acteur principal : L'utilisateur
+Pré-conditions: L'utilisateur est connecté à l'application et est acteur dans un projet
+Garanties minimales : Retour d'informations en cas d'erreur
+Garanties en cas de succès : Le fichier est correctement créé
+
+Scénario nominal:
+1. L'utilisateur utilise le bouton "créer un fichier".
+2. L'utilisateur choisie le nom du fichier.
+3. Le système récupère la liste des fichiers courants
+3. Le système crée le fichier.
+4. L'utilisateur peut éditer le code (CU3).
+
+Extensions:
+3.1. Le nom de fichier est déjà utilisé.
+3.1.2. Le système demande à l'utilisateur de choisir un nouveau nom ou d'écraser l'ancien fichier.
+3.2.1. L'utilisateur choisit un nouveau nom et crée le fichier.
+3.2.2. Le système remplace l'ancien fichier par le nouveau.
+3.2.3. L'utilisateur décide de ne pas créer le fichier.
+
+==================================================================
+
+CU4 : Edition du code
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur veut éditer et lire son code
+Acteur principal : L'utilisateur
+Pré-conditions: L'utilisateur est connecté à l'application
+Garanties minimales : Rien n'est modifié sur le serveur mais le code est conservé en local tant que l'utilisateur ne quitte pas la page
+Garanties en cas de succès : Le code est édité et sauvegardé sur le serveur
+
+Scénario nominal:
+1. L'utilisateur choisit un fichier à modifier.
+2. Le sytème vérifie les droit d'accès de l'utilisateur.
+3. L'utilisateur modifie le fichier.
+4. L'utilisateur sauvegarde ses modifications.
+5. Le système enregistre le fichier
+
+Extensions:
+2.1.1 Le fichier auquel l'utilisateur tente d'accéder est déjà utilisé.
+2.1.2. Retour à la liste des fichiers.
+2.2.1 L'utilisateur n'a pas accès au fichier
+2.2.2. Retour à la liste des fichiers.
+3.1.1. La sauvegarde n'a pas fonctionnée.
+3.1.2. Retour à l'étape 2.
+
+==================================================================
+
+CU5 : Importer un fichier
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur veut importer un fichier
+Acteur principal : L'utilisateur
+Pré-conditions: L'utilisateur est connecté à l'application
+Garanties minimales : Retour d'informations en cas d'erreur
+Garanties en cas de succès : L'utilisateur a importé son fichier.
+
+Scénario nominal:
+1. L'utilisateur sélectionne le fichier qu'il souhaite importer sur l'interface web.
+2. L'utilisateur précise l'emplacement où le fichier doit être sauvegardé dans le projet.
+3. Le système récupère la liste des fichiers courants
+4. Le fichier est importé.
+
+Extensions:
+4.1. Le fichier existe déjà, l'utilisateur décide de remplacer le fichier.
+4.1.1 Le fichier est remplacé.
+4.2. Le fichier existe déjà, l'utilisateur annule l'opération.
+4.2.1. L'import est annulé.
+4.3. L'espace disque est insuffisant.
+
+==================================================================
+
+CU6 : Exporter un fichier
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur veut exporter un fichier
+Acteur principal : L'utilisateur
+Pré-conditions: L'utilisateur est connecté à l'application
+Garanties minimales :  Retour d'informations en cas d'erreur
+Garanties en cas de succès : L'utilisateur a exporté son fichier.
+
+Scénario nominal:
+1. L'utilisateur clique sur le bouton exporter.
+2. L'utilisateur sélectionne le fichier qu'il souhaite exporter sur sa machine.
+3. Le système envoie le fichier à l'utilisateur
+4. Le fichier est exporté.
+
+Extensions:
+3.1 Le fichier est vérouillé, il est quand même exporté et le système envoie un avertissement pour prévenir l'utilisateur.
+
+==================================================================
+
+CU7: Suppression d'un fichier
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur veut supprimer un fichier
+Acteur principal : L'utilisateur
+Pré-conditions: L'utilisateur est connecté à l'application, le fichier existe
+Garanties minimales : Retour d'informations en cas d'erreur
+Garanties en cas de succès : Le fichier est correctement supprimé
+
+Scénario nominal:
+1. L'utilisateur choisit le fichier à supprimer.
+2. Le système vérifie l'état du fichier (lock / unlock).
+3. L'utilisateur utilise le bouton "supprimer un fichier".
+4. Le système supprime le fichier
+5. Le fichier est supprimé.
+
+Extensions:
+1.1. L'utilisateur n'a pas les droits d'écriture sur le fichier. Retour à l'étape 1.
+3.1. Fichier vérouillé: Le bouton supprimé n'est pas accessible.
+
+================================================================================================================================
+
+CU8 : Créer un projet
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur veut créer un nouveau projet
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est connecté à l'application
+Garantie minimale : Retour d'information en cas d'erreur
+Garantie en cas de succès : Le nouveau projet est créé
+
+Scénario nominal:
+1. L'utilisateur choisit un type de projet
+2. L'utilisateur choisit entre importer le projet ou le créer
+3. L'utilisateur choisie les personnes qui ont accès au projet
+4. Le nouveau projet est ouvert
+
+Extensions:
+2.1 L'utilisateur upload son projet
+
+
+================================================================================================================================
+
+CU9 : Supprimer un projet
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur veut supprimer un projet existant
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est connecté à l'application, le projet existe
+Garantie minimale : Retour d'information en cas d'erreur
+Garantie en cas de succès : Le projet est supprimé
+
+Scénario nominal:
+1. L'utilisateur choisit le projet à supprimer
+2. Le système vérifie qu'aucun fichier du projet n'est lock
+3. L'utilisateur utilise le bouton "supprimer le projet"
+4. Le système supprime le projet
+5. Le projet est supprimé.
+
+Extensions:
+1.1. L'utilisateur n'a pas les droits d'écriture sur le projet. Retour en 1.
+3.1. Un fichier est lock, le bouton supprimer est inaccessible.
+
+
+================================================================================================================================
+
+CU10 : Sauvegarde d'un fichier
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur souhaite sauvegarder son fichier
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est connecté à l'application, a créé et edité son code ou modifié un fichier déjà existant.
+Garantie minimale : Retour d'information en cas d'erreur
+Garantie en cas de succès : Le fichier a été correctement sauvegardé
+
+Scénario nominal:
+1. L'utilisateur clique sur le bouton [ENREGISTRER].
+2. L'IDE WEB fait un push vers le dépot (git ou mercurial).
+3. L'IDE WEB informe l'utilisateur de la sauvegarde du fichier.
+
+Extensions:
+2.1. Le serveur (git ou mercurial) n'est pas disponible.
+3.1. L'IDE WEB informe l'utilisateur de la non-sauvegarde du fichier.
+
+================================================================================================================================
+
+CU11 : Renommer
+Portée: IDE WEB
+Niveau: Stratégique (boite blanche)
+Déclencheur: L'utilisateur souhaite renomer un fichier
+Acteur principal: L'utilisateur
+Pré-condition: Le fichier est existant
+Garantie minimale: Retour d'information en cas d'erreur
+Garentie en cas de succès: Le fichier a été renomé
+
+Scénario nominal:
+1. L'utilisateur sélectionne le fichier qui souhaite renommer
+2. Le système vérifie que le fichier n'est pas lock
+3. L'utilisateur écrit le nouveau nom du fichier
+4. L'utilisateur confirme avec le bouton renommer
+5. Le fichier est renommé
+
+Extensions:
+1. L'utilisateur n'a pas les droits pour renommer un fichier
+2. Le fichier Lock: Le bouton renommé n'est pas accessible
+
+================================================================================================================================
+
+CU12 : Déplacer
+Portée: IDE WEB
+Niveau: Stratégique (boite blanche)
+Déclencheur: L'utilisateur souhaite déplacer un fichier
+Acteur principal: L'utilisateur
+Pré-condition: Le fichier est existant
+Garantie minimale: Retour d'information en cas d'erreur
+Garentie en cas de succès: Le fichier a été déplacé
+
+Scénario nominal:
+1. L'utilisateur sélectionne le fichier qui souhaite déplacer 
+2. Le système vérifie que le fichier n'est pas lock
+3. L'utilisateur choisi le répertoire
+4. L'utilisateur confirme avec le bouton déplacer
+5. Le fichier est déplacé
+
+Extensions:
+1. L'utilisateur n'a pas les droit pour déplacer un fichier
+2. Le fichier Lock: Le bouton déplacé n'est pas accessible
+
+================================================================================================================================
+
+CU13 : Compiler
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur veut compiler son travail
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est authentifié, l'utilisateur a ouvert un projet, le projet n'est pas vide
+Garantie minimale : Retour en cas d'erreur
+Garantie en cas de succès : Le projet est compilé avec succès
+
+Scénario nominal:
+1. L'utiliseur sélectionne le bouton COMPILER
+2. Le systeme récupère les options de compilation
+4. le système compile le projet
+
+Extension:
+2.1 Le système ne reconnait pas le langage du projet
+2.1.1 Le système renvoit un message d'erreur
+4.1 Le projet n'est pas compilé
+4.1.1 Le système renvoit les erreurs lors de la compilation
+
+================================================================================================================================
+
+CU14 : Consulter la TODO List
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur veut consulter la liste
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est authentifié, l'utilisateur a ouvert un projet
+Garantie minimale : Retour en cas d'erreur
+Garantie en cas de succès : Affichage de la liste
+
+Scénario nominal :
+1. L'utilisateur clique sur le bouton/lien d'accès à la TODO List.
+2. Le système va récupérer les TODO trouvé pendant le parsing automatique des fichiers stocké dans la BDD.
+3. Le système affiche la liste
+
+Extension:
+2.1 La liste est vide, l'utilisateur est averti
+
+================================================================================================================================
+
+CU15: Ajouter un utilisateur au projet
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur veut ajouter un utilisateur
+Acteur principal : L'Utilisateur est admin du projet
+Pré-condition : l'utilisateur est authentifié et admin du projet, l'utilisateur est dans un projet
+Garantie minimale : Retour en cas d'erreur
+Garantie en cas de succès : Le nouvel utilisateur est ajouté au projet
+
+Scénario nominal :
+1. Le système récupère les informations sur les utilisateurs depuis là BDD
+2. L'utilisateur clique sur le bouton d'ajout d'un nouvel utilisateur.
+3. L'utilisateur recherche la personne à ajouter (par nom/prenom/mail).
+4. L'utilisateur choisit la personne et lui attribut un rôle.
+5 L'utilisateur valide son choix.
+6. Le système modifie la BDD pour donner les droits à l'utilisateur
+
+================================================================================================================================
+
+CU16 : Retirer un utilisateur du projet
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur veut retirer un utilisateur
+Acteur principal : L'utilisateur est admin du projet
+Pré-condition : l'utilisateur est authentifié et admin du projet, l'utilisateur est dans le projet ainsi que l'utilisateur à retirer
+Garantie minimale : Retour en cas d'erreur
+Garantie en cas de succès : L'utilisateur est retiré
+
+Scénario nominal :
+1. Le système récupère la liste des membres du projet depuis la BDD
+2. L'utilisateur accède à la liste des membres du projet.
+3. L'utilisateur clique sur le bouton de retrait de l'utilisateur en question.
+4. Le système supprime l'utilisateur du projet de la liste dans la BDD.
+
+
+================================================================================================================================
+
+CU17 : Ouvrir un ticket
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur souhaite ouvrir un ticket
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est connecté à l'application
+Garantie minimale : Un ticket a été ouvert 
+Garantie en cas de succès : Un ticket a été ouvert.
+
+Scénario nominal:
+1. L'utilisateur se rend sur l'interface de gestion de ticket.
+2. L'utilisateur clique sur [NOUVEAU TICKET].
+3. L'utilisateur renseigne les informations lié à ce nouveau ticket.
+4. L'utilisateur définit la priorité, assigne un utilisateur à la résolution du ticket et valide.
+5. Le système ajoute le ticket à la BDD.
+6. Un nouveau ticket a été ouvert.
+
+
+===============================================================================================================================
+
+CU18 : Création et exportation de la javadoc
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur souhaite créer une javadoc de son projet
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est connecté à l'application
+Garantie minimale : La javadoc est générée partiellement ou sans information.
+Garantie en cas de succès : La javadoc a été correctement générée.
+
+Scénario nominal:
+1. L'utilsateur commente son code : méthodes et variables (/**).
+2. L'utilisateur clique sur le bouton [Générer la javadoc].
+3. L'IDE WEB va parser le fichier .java et interpréter les commentaires.
+4. L'IDE WEB va générer les fichiers .html en fonction des informations que l'IDE WEB aura récupérée, constituants de la javadoc.
+5. L'IDE WEB propose à l'utilisateur d'enregistrer la javadoc.
+6. La javadoc a été créée et exportée.
+
+Extensions:
+1.1. L'utilisateur ne commente pas son code.
+4.1. L'IDE WEB ne trouve pas de commentaires. La javadoc n'est pas générée.
+
+==================================================================
+
+CU19 : Communiquer avec les utilisateurs du projet
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur souhaite communiquer avec les utilisateurs du même projet
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur doit avoir ouvert un projet
+Garantie minimale : L'utilisateur est seul sur le projet
+Garantie en cas de succès : La communication entre les utilisateurs a réussi
+
+Scénario nominal:
+1. L'utilisateur clique sur le bouton [CHAT].
+2. L'utilisateur saisie son texte dans le champ.
+3. L'utilisateur valide pour envoyer son message
+4. Le système diffuse le message à tous les autres utilisateurs
+5. Les utilisateurs communiquent.
+
+==================================================================
+
+CU20 : Créer un post sur le forum
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur souhaite exposer un problème qu'il a eu lors du développement.
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est connecté à l'application, sur le projet où il souhaite poster
+Garantie minimale :  Retour d'erreur si le message ne s'envoie pas
+Garantie en cas de succès : L'utilisateur a posté un message sur le forum.
+
+Scénario nominal:
+1. L'utilisateur clique sur le bouton "Créer un post".
+2. L'utilisateur remplit les champs nécessaires à la création du poste
+3. L'utilisateur valide.
+4. Le ssytème enregistre dans la BDD le post
+
+Extensions:
+1.1. L'utilisateur voit que la solution à son problème est déjà présente sur le forum,dans ce cas pas d'étape 2.
+
+==================================================================
+
+CU21 : Consulter le wiki
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur souhaite acceder à la documentation de son projet
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est connecté à l'application, l'utilisateur est dans un projet
+Garantie minimale : Retour en cas d'erreur, page blanche si wiki vide
+Garantie en cas de succès : L'utilisateur accède à la page principale du wiki
+
+Scénario nominal:
+1. L'utilisateur clique sur le bouton wiki
+2. Le système récupère le wiki depuis la BDD
+3. Le système affiche le wiki à l'utilisateur
+4. L'utilisateur accès à la page wiki du projet

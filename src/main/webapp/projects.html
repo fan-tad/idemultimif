@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects</title>
+    <link rel="icon" href="src/image/sharkode.ico"/>
+    <link rel="stylesheet" href="src/lib/mdl/material.min.css">
+    <link rel="stylesheet" href="src/lib/notify/css/notify-me.min.css">
+    <link rel="stylesheet" href="src/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="src/lib/modal/modal.css">
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/projects.css">
+</head>
+<body>
+<header class="mdl-layout__header">
+    <div class="parameters mdl-layout__header-row">
+        <img src="src/image/logo_header.png">
+        <div class="mdl-layout-spacer"></div>
+        <ul class="list mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="show-parameters">
+            <li class="mdl-menu__item" id="project-config">Configuration</li>
+            <li class="mdl-menu__item" id="logout"><a href="api/logout">Logout</a></li>
+        </ul>
+    </div>
+</header>
+
+<a class="logout" href="api/logout"><i class="fa-sign-out fa"></i></a>
+<div class="container">
+    <!-- bouton + projet -->
+    <div class="project-list mdl-list">
+        <button class="add mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            Créer un projet
+        </button>
+        <div class="list mdl-list">
+            <!-- Ticket list -->
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="create-project" style="display: none;">
+    <div class="header">
+        <h4 class="title">Créer un projet</h4>
+    </div>
+    <div class="content">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="nom" maxlength="45">
+            <label class="mdl-textfield__label" for="nom">Nom...</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <textarea class="mdl-textfield__input" type="text" rows="3" id="description"></textarea>
+            <label class="mdl-textfield__label" for="description">Description...</label>
+        </div>
+        <!-- Other params -->
+    </div>
+    <div class="footer">
+        <button type="button" class="mdl-button create" data-dismiss='modal'>Créer</button>
+        <button type="button" class="mdl-button" data-dismiss='modal'>Annuler</button>
+    </div>
+</div>
+<script src="src/lib/jquery.min.js"></script>
+<script src="src/lib/mdl/material.min.js"></script>
+<script src="src/lib/notify/js/notify-me.min.js"></script>
+<script src="src/lib/modal/modal.min.js"></script>
+<script src="src/js/modules/getpost.js"></script>
+<script src="src/js/projects.js"></script>
+</body>
+</html>

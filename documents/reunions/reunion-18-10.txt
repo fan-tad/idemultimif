@@ -1,0 +1,16 @@
+Présents:
+  - Fanuel
+  - Virgil
+  - Guillaume
+  - Rémi
+
+Missions du jour:
+  - Alexandre et Virgil terminer JPA, avancement DAO
+  - Fanuel et Rémi travail Servlet
+  - Guillaume finir coloration syntaxique, affichage numéro lignes, tickets
+
+Prévisions pour le lendemain :
+  - terminer DAO
+  - avancer FRONT
+  - BACKEND avec Spring / Servlet
+  

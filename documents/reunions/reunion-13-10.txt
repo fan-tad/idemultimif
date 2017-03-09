@@ -1,0 +1,11 @@
+Présents:
+  Groupe au complet, sauf Rémi le matin (fête de la science)
+
+Missions du jour:
+  - Mise en commun des éléments pour le cahier des charges
+  - Début de rédaction du cahier des charges
+  - Installation (install party)
+
+Prévisions pour le lendemain :
+  - finalisation du cahier des charges
+  - continuer installation des VMs

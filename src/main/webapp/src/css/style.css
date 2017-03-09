@@ -1,0 +1,25 @@
+@import "../lib/mdl/material.blue-light_blue.min.css";
+
+body {
+}
+
+.fa {
+    margin: 0 5px;
+}
+
+.notifyme-stack {
+    z-index: 10000;
+}
+
+.modal .content {
+    margin: 20px;
+}
+
+.modal {
+    border-radius: 2px;
+}
+
+.not-implemented {
+    color: #555 !important;
+    cursor: default;
+}

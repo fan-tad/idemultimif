@@ -1,0 +1,8 @@
+Présents:
+  - groupe au complet
+
+Missions du jour:
+    - Faire marcher spring avec notre projet
+
+Prévisions pour le lendemain :
+  - Spring

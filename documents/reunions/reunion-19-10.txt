@@ -1,0 +1,12 @@
+Présents:
+  - groupe au complet
+
+Missions du jour:
+  - terminer DAO
+  - avancer FRONT (ide, ticket, repo)
+  - BACKEND avec Spring / Servlet
+
+Prévisions pour le lendemain :
+  - Test DAO
+  - BACKEND avec Spring
+  - avancer FRONT (merge avec spring pour verifier le Front)

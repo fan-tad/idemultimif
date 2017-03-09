@@ -1,0 +1,43 @@
+#todo .mdl-dialog {
+    width: auto;
+}
+
+.todo-list {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    background-color: #FFF;
+    border-radius: 2px;
+}
+
+.todo {
+    margin: 10px;
+    background-color: #EEE;
+    cursor: pointer;
+}
+
+.todo:hover {
+    background-color: #DDD;
+}
+
+.todo .content {
+    overflow: auto;
+}
+
+.todo pre {
+    max-width: 100%;
+    overflow: auto;
+}
+
+.todo .file {
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.todo .comment {
+    text-align: left;
+}
+
+.modal#show-todo .content {
+    margin: 10px;
+}

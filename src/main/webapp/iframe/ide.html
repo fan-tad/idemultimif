@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>IDE</title>
+    <link rel="stylesheet" href="src/css/iframe/ide.css">
+</head>
+<body>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Projet</span>
+        <div class="actions">
+            <i class="commit fa fa-upload" title="Commit"></i>
+            <i class="push fa fa-cloud-upload" title="Push"></i>
+            <i class="pull fa fa-cloud-download" title="Pull"></i>
+            <select class="branch-list">
+
+            </select>
+            <i class="create-branch fa fa-check" title="Créer une branche"></i>
+            <i class="compile fa fa-gear" title="Compiler"></i>
+            <i class="doc fa fa-book" title="Générer la javadoc"></i>
+        </div>
+        <i class="fa fa-plus"></i>
+        <nav class="tree-file mdl-navigation">
+            <!-- IDE Lest Tree -->
+        </nav>
+    </div>
+    <main class="mdl-layout__content">
+        <div class="page-content">
+            <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+                <header class="mdl-layout__header">
+                    <div class="tabs mdl-layout__tab-bar mdl-js-ripple-effect">
+                        <!-- IDE Tabs -->
+                    </div>
+                </header>
+                <main class="ide mdl-layout__content">
+                    <!-- IDE Text Area -->
+                </main>
+            </div>
+        </div>
+    </main>
+    <script src="src/lib/ace/ace.min.js"></script>
+    <script src="src/lib/ace/theme-monokai.min.js"></script>
+    <script src="src/lib/ace/mode-java.min.js"></script>
+    <script src="src/lib/ace/mode-c_cpp.min.js"></script>
+    <script src="src/lib/ace/mode-json.min.js"></script>
+    <script src="src/lib/ace/mode-xml.min.js"></script>
+    <script src="src/js/iframe/ide.js"></script>
+    <script src="src/js/iframe/vcs.js"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+Présents:
+  Groupe au complet
+Absents:
+  /
+Excusés:
+  /
+
+Missions du jour:
+  - mettre en place les cas d'utilisation textuels
+
+Prévisions pour le lendemain :
+  - Définition de la charte graphique du site
+  - maquettage de différentes pages
+  - installation des Vms​

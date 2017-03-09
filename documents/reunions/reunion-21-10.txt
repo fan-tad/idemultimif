@@ -1,0 +1,9 @@
+Présents:
+  - groupe au complet
+
+Missions du jour:
+  - spring servlets
+  - test jpa / dao
+  - front merging avec les servlets
+
+Prévisions pour le lendemain :

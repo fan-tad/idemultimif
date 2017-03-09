@@ -1,0 +1,59 @@
+front-end
+  - structure html
+	~ page login
+	~ page code (vue d'ensemble)
+	~ page ide
+	~ page tickets
+	~ page wiki
+	~ page stats
+	~ page documents
+	~ page chat
+	~ page forum
+  - modules js
+	~ module login
+	~ module code
+	~ module ide
+	~ module tickets
+	~ module wiki
+	~ module stats
+	~ module documents
+	~ module chat
+	~ module forum
+  - css
+	~ global
+	~ ide
+	~ tickets
+	~ wiki
+	~ documents
+	~ chat 
+	~ forum
+
+back-end
+  - serveur web
+	~ servlet login
+	~ servlet code
+	~ servlet ide
+	~ servlet tickets
+	~ servlet wiki
+	~ servlet stats
+	~ servlet documents
+	~ servlet chat
+	~ servlet forum
+	~ interface bdd
+  - modèle
+  - gestionnaire de version
+	~ interface git
+	~ gestion git
+  - compilation
+	~ scripts de compilation
+
+bdd
+  - conception
+  - jpa
+  - dao
+
+tests
+  - test de connexion
+  - tests unitaires du back-end
+  - tests de scenarii
+  - test utilisateurs externes au projet

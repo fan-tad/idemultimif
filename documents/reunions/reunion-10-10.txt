@@ -1,0 +1,77 @@
+Courvoisier remi
+ayne loris
+boucaud alexandre
+bertet virgil
+Abellan Jean-pierre
+Fanuel Abebe
+Martinez Guillaume
+
+## IDE:
+Intellij
+
+## Environnement:
+Maven tomcat
+
+## Horaire 
+10h
+Pas d'horaires le soir si le travail fixé le matin est fini
+
+## Réunion:
+Réunion le lundi et vendredi
+Petite reu tous les jours matin et soir (5min)
+
+## Gestion des branches:
+revue de code avant de merge sur dev
+Merge sur master après réunion du vendredi
+
+## Charte de dev
++ CamelCase
++ Getter / Setter / Is (à la fin)
++ JavaDoc
+
+https://github.com/airbnb/javascript
+
+## Cahier des charges:
+
+## P0
++ SonarKube
++ Tomcat
++ Serveur java
+
+### P1 
++ Base de donnée
++ Test
++ REST
+
+### P2
++ Editeur de texte
+	+ Autocompletion
+	+ Colorisation
+	+ Correction syntax
++ Gestionnaire de version (interfacage git)
++ Lock / Unlock fichier lors de l'edition
+
+### P3
++ Récup / Importer des fichiers ou le projet en entier
++ Gestion des tickets
+
+### P4
++ Gestion des utilisateurs
++ Wiki
++ Auto generatiton javadoc
++ TODO
+
+### P5
+(+chat)
++ Compiler des langages (c, java) avec output 
+
+### P7
+(+ execution du code)
+
+## Autre
+### P1
++ UML
++ Cas d'utilisations
+
+### P5
++ Rapport (Gdoc)(3-4eme semaine)

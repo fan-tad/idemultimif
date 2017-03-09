@@ -1,0 +1,85 @@
+#ide .page-content .tabs {
+    height: auto;
+}
+
+#ide .page-content .ide .actions > * {
+    padding: 2px 5px;
+    margin: 10px;
+
+    border-radius: 5px;
+    font-size: 25px;
+    background-color: grey;
+
+    cursor: pointer;
+}
+
+#ide .page-content .ide .actions > *:hover {
+    background-color: darkgrey;
+}
+
+#ide .editor {
+    position: absolute;
+    width: 100vw;
+    height: calc(100% - 50px);
+}
+
+#ide .tree-file .mdl-navigation__link {
+    padding: 0px;
+    width: 100vh;
+}
+
+#ide .tree-file .mdl-navigation__link.selected{
+    background-color: rgb(33, 150, 243);
+    color: white;
+}
+
+#ide .tree-file div.dir {
+    margin: 0px 10px;
+}
+
+#ide .tree-file i.fa:before {
+    margin-right: 5px;
+}
+
+#ide .mdl-layout__drawer > i{
+    color: #757575;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+#ide .actions{
+    margin: 0px 0px 10px 10px;
+}
+
+#ide .actions i, .modal#compile-console .play{
+    cursor: pointer;
+    vertical-align: bottom;
+}
+
+#ide .actions i:hover, .modal#compile-console .play:hover{
+    color: rgb(33, 150, 243);
+}
+
+.modal #compile-console .title{
+    font-size: 18px;
+}
+
+#ide .tabs .mdl-layout__tab-bar-button{
+    overflow: hidden;
+}
+
+.modal#compile-console{
+    width: 90%;
+}
+
+.modal#compile-console .mdl-progress{
+    display: inline-block;
+}
+
+/* Met le header en blanc, et change la police en noir. Enleve aussi le uppercase */
+#ide header > div, #ide .tabs, #ide .mdl-layout__tab-bar-button, #ide .tabs .mdl-layout__tab {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+    color: rgb(0, 0, 0);
+    text-transform: none;
+}

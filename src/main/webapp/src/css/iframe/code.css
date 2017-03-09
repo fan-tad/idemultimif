@@ -1,0 +1,30 @@
+.file-overview{
+    width: 80%;
+    margin: auto;
+    background-color: #FFF;
+    border-radius: 2px;
+}
+
+.file-overview .file-name{
+    margin: 10px;
+}
+
+.file-overview pre code{
+    margin: 10px;
+}
+
+.file-overview .back {
+    font-size: 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+table.code {
+    width: 100%;
+}
+
+table.code th, table.code td {
+    text-align: left;
+}
+
+

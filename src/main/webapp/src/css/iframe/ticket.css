@@ -1,0 +1,76 @@
+.ticket-list, .show-ticket {
+    width: 80%;
+    margin: auto;
+    background-color: #FFF;
+    border-radius: 2px;
+}
+
+.ticket-list {
+    text-align: center;
+}
+
+.ticket {
+    background-color: #EEE;
+    cursor: pointer;
+}
+
+.ticket:hover {
+    background-color: #DDD;
+}
+
+.ticket .title, .ticket .mdl-chip {
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.show-ticket > * {
+    margin-left: 20px;
+}
+
+.show-ticket .back {
+    cursor: pointer;
+}
+
+.show-ticket .back:hover {
+    color: grey;
+}
+
+.show-ticket .mdl-chip {
+    vertical-align: top;
+    margin-top: 15px;
+}
+
+.show-ticket .title {
+    display: inline-block;
+    padding-top: 20px;
+    font-size: 30px;
+}
+
+.show-ticket .user {
+    font-size: 15px;
+    color: grey;
+}
+
+.show-ticket .content {
+    padding: 10px;
+    background-color: #EEE;
+    border-radius: 2px;
+}
+
+.modal#create-ticket .badges {
+    width: 50%;
+}
+
+.modal#create-ticket .badges .mdl-list__item-secondary-action {
+    margin-top: -20px;
+    display: inherit;
+}
+
+.mdl-chip#bug-chip {
+    margin-right: 42px;
+    background-color: #F75353;
+}
+
+#ticket .page-content .mdl-chip#feature-chip {
+    background-color: #F7A253;
+}

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Project</title>
+    <link rel="icon" href="src/image/sharkode.ico"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="src/lib/mdl/material.min.css">
+    <link rel="stylesheet" href="src/lib/mdl/mdl-selectfield.min.css">
+    <link rel="stylesheet" href="src/lib/notify/css/notify-me.min.css">
+    <link rel="stylesheet" href="src/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="src/lib/gitgraph/gitgraph.css">
+    <link rel="stylesheet" href="src/lib/highlight/styles/dracula.css">
+    <link rel="stylesheet" href="src/lib/modal/modal.css">
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/project.css">
+</head>
+<body>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="parameters mdl-layout__header-row">
+            <img src="src/image/logo_header.png">
+            <div class="mdl-layout-spacer"></div>
+            <button id="show-parameters" class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="fa fa-gear"></i>
+            </button>
+            <ul class="list mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="show-parameters">
+                <li class="mdl-menu__item" id="project-config">Configuration</li>
+                <li class="mdl-menu__item" id="logout"><a href="api/logout">Logout</a></li>
+            </ul>
+        </div>
+        <div class="tabs mdl-layout__tab-bar mdl-js-ripple-effect">
+            <a class="mdl-layout__tab return-project-list" href="projects.html"><i class="fa fa-arrow-left"></i></a>
+            <span id="project-title" class="mdl-layout__tab">
+                Title
+            </span>
+            <a class="mdl-layout__tab is-active" id="#code" href="#code">Code</a>
+            <a class="mdl-layout__tab" id="ide" href="#ide">Ide</a>
+            <a class="mdl-layout__tab" id="ticket" href="#ticket">Tickets</a>
+            <a class="mdl-layout__tab" id="repo" href="#repo">Depot</a>
+            <a class="mdl-layout__tab" id="todo" href="#todo">Todo</a>
+            <a class="mdl-layout__tab not-implemented" id="forum" href="#forum">Forum</a>
+            <a class="mdl-layout__tab" id="wiki" href="#wiki">Wiki</a>
+            <a class="mdl-layout__tab not-implemented" id="doc" href="#doc">Documentation</a>
+        </div>
+    </header>
+    <main class="iframe mdl-layout__content">
+        <section class="mdl-layout__tab-panel is-active" id="code">
+            <div class="page-content"><!-- Content loaded buy JQuery --></div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="ide">
+            <div class="page-content"><!-- Content loaded buy JQuery --></div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="ticket">
+            <div class="page-content"><!-- Content loaded buy JQuery --></div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="repo">
+            <div class="page-content"><!-- Content loaded buy JQuery --></div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="todo">
+            <div class="page-content"><!-- Content loaded buy JQuery --></div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="forum">
+            <div class="page-content"><!-- Content loaded buy JQuery --></div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="wiki">
+            <div class="page-content"><!-- Content loaded buy JQuery --></div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="doc">
+            <div class="page-content"><!-- Content loaded buy JQuery --></div>
+        </section>
+    </main>
+</div>
+<div class="modal fade" id="config-project" style="display: none;">
+    <div class="header">
+        <h4 class="title">Configuration du Projet</h4>
+    </div>
+    <div class="content">
+        <div class="project-name mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="nom">
+            <label class="mdl-textfield__label" for="nom">Nom...</label>
+        </div>
+        <h5>Users</h5>
+        <ul class="users mdl-list">
+
+        </ul>
+        <button class="add-user mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            <i class="fa fa-plus"></i>
+        </button>
+    </div>
+    <div class="footer">
+        <button type="button" class="mdl-button save" data-dismiss='modal'>Sauvgarder</button>
+        <button type="button" class="mdl-button" data-dismiss='modal'>Annuler</button>
+    </div>
+</div>
+
+<!-- Should be in tickt.html -->
+<div class="modal fade" id="create-ticket" style="display: none;">
+    <div class="header">
+        <h4 class="title">Créer un ticket</h4>
+    </div>
+    <div class="content">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="nom" maxlength="45">
+            <label class="mdl-textfield__label" for="nom">Nom...</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <textarea class="mdl-textfield__input" type="text" rows="3" id="description"></textarea>
+            <label class="mdl-textfield__label" for="description">Description...</label>
+        </div>
+        <ul class="badges mdl-list">
+            <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <span class="mdl-chip" id="bug-chip">
+                            <span class="mdl-chip__text">Bug</span>
+                        </span>
+                    </span>
+                <span class="mdl-list__item-secondary-action">
+                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="bug">
+                            <input type="radio" id="bug" class="mdl-radio__button" name="options" value="bug"/>
+                        </label>
+                    </span>
+            </li>
+            <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <span class="mdl-chip" id="feature-chip">
+                            <span class="mdl-chip__text">Feature</span>
+                        </span>
+                    </span>
+                <span class="mdl-list__item-secondary-action">
+                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="feature">
+                            <input type="radio" id="feature" class="mdl-radio__button" name="options" value="feature"/>
+                        </label>
+                    </span>
+            </li>
+        </ul>
+    </div>
+    <div class="footer">
+        <button type="button" class="mdl-button create" data-dismiss='modal'>Créer</button>
+        <button type="button" class="mdl-button" data-dismiss='modal'>Annuler</button>
+    </div>
+</div>
+
+<div class="modal fade" id="show-todo" style="display: none;">
+    <div class="header"></div>
+    <div class="content">
+            <pre>
+                <code class="hljs">
+                    <!-- code goes here -->
+                </code>
+            </pre>
+    </div>
+    <div class="footer">
+        <button type="button" class="mdl-button" data-dismiss='modal'>Close</button>
+    </div>
+</div>
+
+<div class="modal fade" id="compile-console" style="display: none;">
+    <div class="header">
+        <h4 class="title">Compilation</h4>
+    </div>
+    <div class="content">
+        <i class="play fa fa-play"></i>
+        <div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="display: none"></div>
+        <li class="mdl-list__item">
+            <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                <select class="lang mdl-selectfield__select">
+                    <option value="cpp">Cpp</option>
+                    <option value="java">Java</option>
+                </select>
+            </div>
+        </li>
+        <div class="commentaire">
+            <p class="cpp">
+                Sharkode utilise <a href="https://cmake.org/">CMake</a> pour compiler votre projet.<br>
+                Prérequis:<br>
+                - Vous devez écrire votre code dans un dossier "src/".<br>
+                - Un fichier <a target="_blank" href="https://cmake.org/examples/">"CMakeLists.txt"</a> dans votre dossier "src/".
+            </p>
+            <p class="java" style="display: none;">
+                Sharkode utilise <a href="https://maven.apache.org/">Maven</a> pour compiler votre projet.<br>
+                Prérequis:<br>
+                - Vous devez écrire votre code dans un dossier "src/".<br>
+                - Un fichier <a target="_blank" href="https://maven.apache.org/guides/introduction/introduction-to-the-pom.html">"pom.xml"</a>
+                à la racine de votre projet.
+            </p>
+        </div>
+        <pre>
+                <span class="title">stdout</span>
+                <code class="stdout">
+
+                </code>
+            </pre>
+        <pre>
+                <span class="title">stderr</span>
+                <code class="stderr">
+
+                </code>
+            </pre>
+    </div>
+    <div class="footer">
+        <button type="button" class="mdl-button ferme" data-dismiss='modal'>Close</button>
+    </div>
+</div>
+<div class="chat" id="closed">
+
+</div>
+
+<script src="src/lib/jquery.min.js"></script>
+<script src="src/lib/mdl/material.min.js"></script>
+<script src="src/lib/mdl/mdl-selectfield.min.js"></script>
+<script src="src/lib/notify/js/notify-me.min.js"></script>
+<script src="src/lib/highlight/highlight.min.js"></script>
+<script src="src/lib/gitgraph/gitgraph.min.js"></script>
+<script src="src/lib/markdown-it.min.js"></script>
+<script src="src/lib/modal/modal.min.js"></script>
+<script src="src/js/modules/getpost.js"></script>
+<script src="src/js/project.js"></script>
+</body>
+</html>

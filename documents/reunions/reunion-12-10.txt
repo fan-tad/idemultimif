@@ -1,0 +1,16 @@
+Présents:
+  Groupe au complet
+Absents:
+  /
+Excusés:
+  /
+
+Missions du jour:
+  - Définition de la charte graphique du site
+  - maquettage de différentes pages
+  - installation des Vms​
+  - modélisation de l'architecture du projet
+
+Prévisions pour le lendemain :
+  - rédaction du cahier des charges
+  - continuer installation des VMs

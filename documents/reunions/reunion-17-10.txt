@@ -1,0 +1,18 @@
+Présents:
+  Groupe au complet
+
+Missions du jour:
+  - Alexandre et Virgil userDAO projectDAO
+  - Guillaume page projet + sous modules
+  - ?
+  - Fanuel et Rémi premier jet modèle, classes les plus simples vers classes les plus riches
+
+  - debut servlet
+  - intégration modèle + jpa (50%)
+  - dao
+  - front onglet code, onglet IDE (arrêt coloration syntaxique)
+
+Prévisions pour le lendemain :
+  - fin jpa
+  - front coloration synataxique + tickets
+  - servlet login, code et project

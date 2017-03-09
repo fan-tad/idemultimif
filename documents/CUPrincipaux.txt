@@ -1,0 +1,305 @@
+Cas d’utilisation
+
+======================== BOITE NOIRE ============================
+================================================================
+
+CU1 :  Authentification d’un utilisateur
+Portée : IDE WEB
+Niveau : Utilisateur
+Déclencheur : L'utilisateur veut accéder à l'application
+Acteur principal : L'utilisateur
+Garanties minimales : Retour d'informations en cas d’échec de l’authentification
+Garanties en cas de succès : Authentification réussie
+
+Scénario:
+1. Le système affiche l’écran d’ouverture de session.
+2. L’utilisateur saisit un nom d’utilisateur et un mot de passe.
+3. L’IDE vérifie les informations.
+4. L’IDE définit les autorisations d’accès.
+5. L’IDE  affiche l’écran principal.
+
+Extensions:
+3.1 L’IDE refuse l'authentification.
+3.1.1 Retour à l'étape 1.
+
+==================================================================
+
+CU2 : Importation d’un fichier
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur veut importer un fichier dans son projet
+Acteur principal : L'utilisateur
+Pré-conditions: L'utilisateur est connecté à l'application, sur son projet
+Garanties minimales : Retour d'informations en cas d'échec de l’importation du fichier
+Garanties en cas de succès : L'utilisateur a importé son fichier.
+
+Scénario nominal:
+1. L'utilisateur sélectionne le fichier qu'il souhaite importer sur l'interface web.
+2. L'utilisateur précise l'emplacement où le fichier doit être sauvegardé dans le projet.
+3. L’utilisateur importe le fichier.
+
+Extensions:
+3,1. Le fichier existe déjà, l'utilisateur décide de remplacer le fichier.
+3.1.1 Le fichier est remplacé.
+3.2. Le fichier existe déjà, l'utilisateur annule l'opération.
+3.2.1. L'import est annulé.
+
+==================================================================
+
+CU3: Suppression d'un fichier
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur veut supprimer un fichier
+Acteur principal : L'utilisateur
+Pré-conditions: L'utilisateur est connecté à l'application, le fichier existe
+Garanties minimales : Retour d'informations en cas d’échec de la suppression du fichier
+Garanties en cas de succès : Le fichier est correctement supprimé
+
+Scénario nominal:
+1. L'utilisateur sélectionne le fichier à supprimer.
+2. L’IDE vérifie l'état du fichier (lock / unlock).
+3. L'utilisateur utilise le bouton [SUPPRIMER UN FICHIER].
+4. Le fichier est supprimé.
+
+Extensions:
+1.1. L'utilisateur n'a pas les droits d'écriture sur le fichier.
+1.1.1. Retour à l'étape 1.
+3.1. Fichier verrouillé: Le bouton supprimé n'est pas accessible.
+3.1.1 Retour à l’étape 1.
+
+==================================================================
+
+CU4 : Création d’un projet
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur veut créer un nouveau projet
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est connecté à l'application
+Garantie minimale : Retour d'information en cas d'échec de la création du projet
+Garantie en cas de succès : Le nouveau projet est créé
+
+Scénario nominal:
+1. L'utilisateur choisit un type de projet.
+2. L'utilisateur choisit de créer son projet.
+3. L'utilisateur choisit les personnes qui ont accès au projet.
+4. Le nouveau projet est crée et ouvert automatiquement.
+
+Extensions:
+2.1 L'utilisateur choisit d’importer son projet.
+2.1.1. L’utilisateur sélectionne le dossier qui contient son projet et l’importe.
+
+==================================================================
+
+CU5: Ajout d’un utilisateur au projet
+Portée : IDE WEB
+Niveau : Stratégique (boite noire)
+Déclencheur : L'utilisateur veut ajouter un utilisateur
+Acteur principal : L'utilisateur
+Pré-condition : l'utilisateur est authentifié et admin du projet, l'utilisateur est dans un projet
+Garantie minimale : Retour en cas d'échec de l’ajout
+Garantie en cas de succès : Le nouvel utilisateur est ajouté au projet
+
+Scénario nominal :
+1. L'utilisateur clique sur le bouton d'ajout d'un nouvel utilisateur.
+2. L'utilisateur recherche la personne à ajouter (par nom/prénom/mail).
+3. L'utilisateur choisit la personne et lui attribut un rôle.
+4 L'utilisateur valide son choix.
+
+
+======================== BOITE BLANCHE ============================
+===================================================================
+
+CU6 :  Authentification d’un utilisateur
+Portée : IDE WEB
+Niveau : Utilisateur (boite blanche)
+Déclencheur : L'utilisateur veut accéder à l'application
+Acteur principal : L'utilisateur
+Garanties minimales : Retour d'informations en cas d’échec de l’authentification
+Garanties en cas de succès : Authentification réussie
+
+Scénario:
+1. Le système affiche l’écran d’ouverture de session.
+2. L’utilisateur saisit un nom d’utilisateur et un mot de passe.
+3. L’IDE fait une requête à la BDD pour vérifier les informations
+4. La BDD renvoie les information de connexion
+5. L’IDE vérifie les informations.
+6. L’IDE définit les autorisations d’accès.
+7. L‘IDE charge les information de l'utilisateur.
+8. L’IDE affiche l’écran principal.
+
+Extensions:
+3.1. L’IDE refuse l'authentification.
+3.1.1. Retour à l'étape 1.
+
+==================================================================
+
+CU7 : Édition du code
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur veut éditer et lire son code
+Acteur principal : L'utilisateur
+Pré-conditions: L'utilisateur est connecté à l'application
+Garanties minimales : Rien n'est modifié sur le serveur mais le code est conservé en local tant que l'utilisateur ne quitte pas la page
+Garanties en cas de succès : Le code est édité et sauvegardé sur le serveur
+
+Scénario nominal:
+1. L'utilisateur choisit un fichier à modifier.
+2. L’IDE vérifie les droit d'accès de l'utilisateur.
+3. L'utilisateur modifie le fichier.
+4. L'utilisateur sauvegarde ses modifications.
+5. L’IDE enregistre le fichier.
+
+Extensions:
+2.1. Le fichier auquel l'utilisateur tente d'accéder est déjà utilisé.
+2.1.1. Retour à l’étape 1.
+2.2 L'utilisateur n'a pas accès au fichier
+2.2.1. Retour à l’étape 1.
+4.1. La sauvegarde n'a pas fonctionné.
+4.1.1. Retour à l'étape 2.
+
+=======================================================================
+
+CU8 : Compilation d’un projet
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur veut compiler son projet
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est authentifié, l'utilisateur a ouvert un projet, le projet n'est pas vide
+Garantie minimale : Retour en cas d'échec de la compilation
+Garantie en cas de succès : Le projet est compilé avec succès
+
+Scénario nominal:
+1. L'utilisateur clique sur le bouton [COMPILER]
+2. L’IDE récupère les options de compilation
+3. L’IDE compile le projet
+
+Extension:
+2.1 Le système ne reconnaît pas le langage du projet
+2.1.1 Le système renvoie un message d'erreur
+3.1 Le projet n'est pas compilé
+3.1.1 Le système renvoie les erreurs lors de la compilation
+
+=======================================================================
+
+CU9 : Consultation de la TODO List
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur veut consulter la liste des TODO
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est authentifié, l'utilisateur a ouvert un projet
+Garantie minimale : Retour en cas d’échec de l’ouverture de la TODO List
+Garantie en cas de succès : Affichage de la TODO List
+
+Scénario nominal :
+1. L'utilisateur clique sur le bouton/lien d'accès à la TODO List.
+2. L’IDE va récupérer les TODO trouvé pendant le parsing automatique des fichiers stockés dans la BDD.
+3. L’IDE affiche la liste.
+
+Extension:
+2.1 L’IDE informe l’utilisateur si la TODO List est vide
+
+=======================================================================
+
+CU10 : Ouverture d’un ticket
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur souhaite ouvrir un ticket
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est connecté à l'application
+Garantie minimale : Un ticket a été ouvert 
+Garantie en cas de succès : Un ticket a été ouvert.
+
+Scénario nominal:
+1. L'utilisateur se rend sur l'interface de gestion de ticket.
+2. L'utilisateur clique sur le bouton [NOUVEAU TICKET].
+3. L'utilisateur renseigne les informations liées à ce nouveau ticket.
+4. L'utilisateur définit la priorité, assigne un utilisateur à la résolution du ticket et valide.
+5. L’IDE ajoute le ticket à la BDD.
+6. L’IDE ouvre ce ticket.
+
+=======================================================================
+
+CU11 : Création et exportation de la Javadoc
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur souhaite créer une Javadoc de son projet
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est connecté à l'application, dans un projet Java
+Garantie minimale : La Javadoc est générée partiellement ou sans information.
+Garantie en cas de succès : La Javadoc a été correctement générée.
+
+Scénario nominal:
+1. L’utilisateur commente son code : méthodes et variables (/**).
+2. L'utilisateur clique sur le bouton [Générer la Javadoc].
+3. L'IDE va parser le fichier .java et interpréter les commentaires.
+4. L'IDE va générer les fichiers .html en fonction des informations que l'IDE WEB aura récupérée, constituants de la Javadoc.
+5. L'IDE propose à l'utilisateur d'enregistrer la Javadoc.
+6. La Javadoc a été créée et exportée.
+
+Extensions:
+1.1. L'utilisateur ne commente pas son code.
+4.1. L'IDE WEB ne trouve pas de commentaires. La Javadoc n'est pas générée.
+
+==================================================================
+
+CU12 : Communication avec les autres utilisateurs du projet
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur souhaite communiquer avec les utilisateurs du même projet
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur doit avoir ouvert un projet
+Garantie minimale : L'utilisateur est seul sur le projet
+Garantie en cas de succès : La communication entre les utilisateurs a réussi
+
+Scénario nominal:
+1. L'utilisateur clique sur le bouton [CHAT].
+2. L'utilisateur saisie son texte dans le champ.
+3. L'utilisateur valide pour envoyer son message
+4. L’IDE diffuse le message à tous les autres utilisateurs
+5. Les utilisateurs communiquent.
+
+Extensions :
+5.1 L’utilisateur est seul sur le projet
+
+==================================================================
+
+CU13 : Création d’un post sur le forum
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur souhaite exposer un problème qu'il a eu lors du développement.
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est connecté à l'application, sur le projet où il souhaite poster
+Garantie minimale :  Retour d'erreur si le message ne s'envoie pas
+Garantie en cas de succès : L'utilisateur a posté un message sur le forum.
+
+Scénario nominal:
+1. L’utilisateur choisit un sujet dans lequel il veut créer son post
+2. L'utilisateur clique sur le bouton "Créer un post".
+3. L'utilisateur remplit les champs nécessaires à la création du poste
+4. L'utilisateur valide.
+5. L’IDE enregistre dans le post la BDD.
+
+Extensions:
+1.1 L’utilisateur crée un nouveau sujet.
+2.1. L'utilisateur voit que la solution à son problème est déjà présente sur le forum,dans ce cas pas d'étape 3-4-5.
+
+==================================================================
+
+CU14 : Consultation du wiki
+Portée : IDE WEB
+Niveau : Stratégique (boite blanche)
+Déclencheur : L'utilisateur souhaite accéder à la documentation de son projet
+Acteur principal : L'utilisateur
+Pré-condition : L'utilisateur est connecté à l'application, dans un projet
+Garantie minimale : Retour en cas d'erreur, page blanche si wiki vide
+Garantie en cas de succès : L'utilisateur accède à la page principale du wiki
+
+Scénario nominal:
+1. L'utilisateur clique sur le bouton wiki.
+2. L’IDE récupère le wiki depuis la BDD.
+3. L’IDE affiche le wiki à l'utilisateur.
+4. L'utilisateur accède à la page wiki du projet.
+
+Extension :
+2.1. Le wiki est vide.
+2.1.1 L’IDE affiche une page blanche.
